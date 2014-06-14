@@ -13,7 +13,7 @@ app.use('/views', express.static('views'));
 app.use(express.static('public'));
 app.get('/js/bundle.js', browserify(['lodash', 'async', 'ractive-express']));
 app.get("/*", function(req, res){
-    res.render('Page', {route: {url: req.url}});
+    res.render('page', {route: {url: req.url}});
 });
 app.listen(3000);
 console.log('listening on port 3000');

@@ -73,7 +73,7 @@ module.exports = function(template, cb){
         });
     };
 
-    context.getResources(['lorem_ipsum'], ['Donutchart'], function(error, partials, components){
+    context.getResources(['lorem_ipsum'], ['donutchart'], function(error, partials, components){
         if (error){cb(error); return;}
         cb(null, context.Ractive.extend({template: template, partials: partials, components: components, data: data, init: init}));
     });
