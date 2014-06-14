@@ -1,0 +1,45 @@
+body {
+    width: 100%;
+    height: 100%;
+    background: black url("http://www.pptback.com/uploads/flowers-flowers-and-butterflies-black-frame-backgrounds-powerpoint.jpg") no-repeat local top right;
+}
+html {
+    width: 100%;
+    height: 100%;
+}
+section {
+    position: absolute;
+    margin: 74px 0 24px 0;
+    min-width: 100%;
+}
+
+ol.breadcrumb {margin-bottom: 0;}
+div.thumbnail {text-align: center;}
+div.thumbnail div.preview {
+    max-width: 100%;
+    height: auto;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/*donutchart example section*/
+
+svg {
+    width: 100%;
+    height: 160px;
+    padding: 0 0 0 0;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+polygon {
+    stroke: white;
+    stroke-width: 1;
+
+    -webkit-transition: opacity 0.2s;
+    -moz-transition: opacity 0.2s;
+    -ms-transition: opacity 0.2s;
+    -o-transition: opacity 0.2s;
+    transition: opacity 0.2s;
+}

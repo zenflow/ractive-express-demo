@@ -1,9 +1,130 @@
-<!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title></title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{title}}</title>
+    <link href="/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="/css/Page.css" rel="stylesheet" type="text/css">
 </head>
 <body>
-    route: {{route}}
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/" on-click="nav">ractive-express-demo</a>
+        </div>
+        <div class="collapse navbar-collapse navbar-ex1-collapse">
+            <ul class="nav navbar-nav">
+                <li class="{{route.path[0]==''?'active':''}}"><a href="{{route.mount}}" on-click="nav">Home</a></li>
+                <li class="{{route.path[0]=='examples'?'active':''}}"><a href="{{route.mount}}examples" on-click="nav">Examples</a></li>
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<div>
+    {{#route.path[0]==''}}
+    <section intro="fly" outro="fade">
+        <div class="container">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <ol class="breadcrumb">
+                        <li class="active">Home</li>
+                    </ol>
+                </div>
+                <div class="panel-body">
+                    <p>{{>lorem_ipsum}}</p>
+                    <p>{{>lorem_ipsum}}</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    {{/}}
+    {{#(route.path[0]=='examples') && (!route.path[1])}}
+        <section intro="fly" outro="fade">
+            <div class="container">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <ol class="breadcrumb">
+                            <li><a href="{{route.mount}}" on-click="nav">Home</a></li>
+                            <li class="active">Examples</li>
+                        </ol>
+                    </div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-sm-6 col-md-4">
+                                <div class="thumbnail">
+                                    <a href="{{route.mount}}examples/donutchart/1/2/3" on-click="nav">
+                                        <div class="preview">
+                                            <Donutchart parts="[1,2,3]" />
+                                        </div>
+                                        <div class="caption">
+                                            <h3>{{examples.donutchart.title}}</h3>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    {{/}}
+    {{#(route.path[0]=='examples') && (route.path[1]=='donutchart')}}
+        <section intro="fly" outro="fade">
+            <div class="container">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <ol class="breadcrumb">
+                            <li><a href="{{route.mount}}" on-click="nav">Home</a></li>
+                            <li><a href="{{route.mount}}examples" on-click="nav">Examples</a></li>
+                            <li class="active">{{examples.donutchart.title}}</li>
+                        </ol>
+                    </div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-sm-6 col-md-3">
+                                <Donutchart parts="{{examples.donutchart.parts}}" colors="{{examples.donutchart.colors}}"/>
+                            </div>
+                            <div class="col-sm-6 col-md-3">
+                                <form role="form">
+                                    <div class="form-group">
+                                        <label for="parts_str">Parts</label>
+                                        <input type="text" class="form-control" id="parts_str" value="{{examples.donutchart.parts_str}}" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="colors_str">Colors</label>
+                                        <input type="text" class="form-control" id="colors_str" value="{{examples.donutchart.colors_str}}" />
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="col-sm-12 col-md-6">
+                                <div class="well"><p>{{>lorem_ipsum}}</p></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    {{/}}
+</div>
+<script src="/js/jquery-1.10.2.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/bundle.js"></script>
+<script type="text/javascript">
+    var page;
+    var context = new (require('ractive-express'))();
+    context.getComponent('Page', function(error, Component){
+        if (error){throw error;}
+        page = context.bindPage(Component, {data: {{JSON.stringify(.)}} });
+    });
+</script>
 </body>
+
 </html>

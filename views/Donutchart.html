@@ -1,0 +1,8 @@
+<svg viewBox='0 0 100 100'>
+    {{#getSegments(parts):i}}
+    <g transform='translate(50,50)'>
+        <polygon on-hover='select:{{id}}' class='donut-segment' fill='{{ colors[ id ] }}'
+                 opacity='{{ selected != id ? 1 : 0.4 }}' points='{{ getSegmentPoints( ., 20, 50 ) }}' />
+    </g>
+    {{/segments}}
+</svg>
