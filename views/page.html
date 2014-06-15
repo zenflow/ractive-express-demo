@@ -117,13 +117,15 @@
 <script src="/js/jquery-1.10.2.js"></script>
 <script src="/js/bootstrap.min.js"></script>
 <script src="/js/bundle.js"></script>
-<script type="text/javascript">
-    var page;
-    var context = new (require('ractive-express'))();
-    context.getComponent('page', function(error, Component){
-        if (error){throw error;}
-        page = context.bindPage(Component, {data: {{JSON.stringify(.)}} });
-    });
+<script>
+	(function(){
+		var context = new (require('ractive-express'))()
+		context.getComponent('page', function(error, Component){
+			if (error){throw error;}
+			var page = context.bindPage(Component, {data: {{JSON.stringify(.)}} });
+			// ... do stuff with our page viewmodel ...
+		});	
+	})();
 </script>
 </body>
 
