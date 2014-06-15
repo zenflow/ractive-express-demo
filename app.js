@@ -15,5 +15,6 @@ app.get('/js/bundle.js', browserify(['lodash', 'async', 'ractive-express']));
 app.get("/*", function(req, res){
     res.render('page', {route: {url: req.url}});
 });
-app.listen(3000);
-console.log('listening on port 3000');
+var port = process.env.PORT || 3000; 
+app.listen(port);
+console.log('listening on port ' + port);
